@@ -32,7 +32,8 @@ class OpenIDImplicitGrant(OpenIDMixin, ImplicitGrant):
                 client, self.GRANT_TYPE,
                 user=grant_user,
                 scope=self.request.scope,
-                include_refresh_token=False
+                include_refresh_token=False,
+                expires_in=self.server.config.get('jwt_exp')
             )
             if self.request.response_type == 'id_token':
                 token = {
